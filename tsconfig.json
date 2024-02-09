@@ -1,20 +1,24 @@
 {
    "compilerOptions": {
-      "target": "es5",
-      "module": "commonjs",
-      "outDir": "lib",
+      "target": "ES2022",
+      "module": "NodeNext",
+      "outDir": "./lib",
+      "moduleResolution": "NodeNext",
+      "sourceMap": true,
       "alwaysStrict": true,
-      "moduleResolution": "node",
+      "noEmit": true,
+      "skipLibCheck": true,
+      "resolveJsonModule": true,
       "noImplicitAny": true,
+      "isolatedModules": true,
       "esModuleInterop": true,
+      "strictNullChecks": true,
       "noUnusedLocals": true,
-      "charset": "utf-8",
-      "baseUrl": ".",
+      "forceConsistentCasingInFileNames": true,
       "paths": {
-         "src/*": ["src/*"]
+         "@actionstagger/*": ["./src/*"],
+         "@actionstagger": ["./src"]
       }
    },
-   "typeAcquisition": {
-      "enable": true
-   }
+   "include": ["src/**/*.ts", "jest.config.ts"]
 }

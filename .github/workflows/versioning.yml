@@ -1,18 +1,22 @@
-name: "Tag latest release of action tagger :zap:"
+name: 'Tag latest release of action tagger ⚡'
 
 on:
-  release:
-    types:
-      - published
-      - edited
+  push:
+    tags:
+      - 'v?[0-9]+.[0-9]+.[0-9]+'
+    branches-ignore:
+      - '**'
+    paths-ignore:
+      - '**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  run-tag-latest:
+  tag-latest:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.ref }}
+      - uses: actions/checkout@v4
       - uses: ./
         with:
           publish_latest_tag: true

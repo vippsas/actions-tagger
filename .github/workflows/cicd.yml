@@ -4,16 +4,19 @@ on:
   pull_request:
   push:
     branches:
-      - "release/**"
-    tags:
-      - "v[0-9]+.[0-9]+.[0-9]+"
+      - 'release/**'
 
 jobs:
   run-tests:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: jest
-        run: |
-          npm ci
-          npm run test
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Install deps
+        run: yarn install --frozen-lockfile
+      - name: Lint
+        run: yarn lint
+      - name: Test
+        run: yarn test
